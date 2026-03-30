@@ -13,11 +13,6 @@ from typing import Any, cast
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from temporalio.client import Client
-
-# Apply Azure OpenAI compatibility patch before any MemU service init
-from app.patches.azure_openai_compat import apply as _apply_azure_patch
-
-_apply_azure_patch()
 from temporalio.service import RPCError, RPCStatusCode
 
 from app.schemas.memory import (

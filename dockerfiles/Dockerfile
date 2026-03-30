@@ -21,7 +21,7 @@ RUN uv sync --frozen --no-dev
 # Patch memu-py for Azure OpenAI compatibility (omit max_tokens=null)
 # Copies fixed files from patches/ over the installed PyPI versions
 COPY patches/azure-openai/ /tmp/memu-patches/
-RUN MEMU_PATH=$(python -c "import memu; import os; print(os.path.dirname(memu.__file__))") && \
+RUN MEMU_PATH=$(.venv/bin/python -c "import memu; import os; print(os.path.dirname(memu.__file__))") && \
     cp /tmp/memu-patches/openai_sdk.py "$MEMU_PATH/llm/openai_sdk.py" && \
     cp /tmp/memu-patches/openai_backend.py "$MEMU_PATH/llm/backends/openai.py" && \
     rm -rf /tmp/memu-patches

@@ -19,6 +19,9 @@ dependencies = [
     # Workflow Engine
     "temporalio==1.16.0",
 
+    # Production server
+    "gunicorn>=23.0.0",
+
     # Configuration & Utils
     "pydantic-settings>=2.10.1",
     "python-dotenv>=1.0.0",

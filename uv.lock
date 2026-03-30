@@ -915,7 +915,7 @@ wheels = [
 [[package]]
 name = "memu-py"
 version = "1.5.1"
-source = { git = "https://github.com/parasite2060/memU.git#524e1c19b2fbabc494e123122b91a77914924f29" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "alembic" },
     { name = "defusedxml" },
@@ -927,6 +927,14 @@ dependencies = [
     { name = "pendulum" },
     { name = "pydantic" },
     { name = "sqlmodel" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/97/95/e46407b2c83d7bb605340fc0a86f9b28ccf2d8e66270d40aa18ae0aff8e9/memu_py-1.5.1.tar.gz", hash = "sha256:476789f33003a19b6f5d2883ddbae0a4f1d2f3c9e52ecff445e26620473d0f48", size = 12540347, upload-time = "2026-03-23T07:40:44.56Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f1/71/b9d6409304f2455f1fdd2b8fcaef5419b1890ee802a1bd5b68e8b6d43bd2/memu_py-1.5.1-cp313-abi3-macosx_10_12_x86_64.whl", hash = "sha256:24d4a71650997267ad6f00a42cabdde4474e21ad04809cedd66ae5ed6c9f2784", size = 378268, upload-time = "2026-03-23T07:40:37Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/06/c5af830fa14eece0105e0aa915e9c6d5b54820121bab72215c32ba812b5b/memu_py-1.5.1-cp313-abi3-macosx_11_0_arm64.whl", hash = "sha256:bb123aebc509e670449ff48bdd16ce71adfe620f9e6a0aed8b94f05d0d921f27", size = 375794, upload-time = "2026-03-23T07:40:38.547Z" },
+    { url = "https://files.pythonhosted.org/packages/87/a2/49753e1fa7cea4143a4494de7d6f9c8b25c9df4c110942c60cf57a92da63/memu_py-1.5.1-cp313-abi3-manylinux_2_39_aarch64.whl", hash = "sha256:f14ff39c47ecb3113c62ea9b498968d0bfbdd32467b1a1309a04237b22f96ac5", size = 400850, upload-time = "2026-03-23T07:40:39.844Z" },
+    { url = "https://files.pythonhosted.org/packages/fd/cf/a3de0da0f3467a2c8449b96f758fdf8911a97a4490f6546cd81f6ead3d20/memu_py-1.5.1-cp313-abi3-manylinux_2_39_x86_64.whl", hash = "sha256:14b091e7e26e5c61a6f366cc120cf8cbeaed38f8af84f74cd2c9f986b43d69c2", size = 408744, upload-time = "2026-03-23T07:40:41.104Z" },
+    { url = "https://files.pythonhosted.org/packages/e2/5b/9418f93faffdb1707f89f4741919df4add6d6c5500fa295cb670d30260c1/memu_py-1.5.1-cp313-abi3-win_amd64.whl", hash = "sha256:980613a3758c453436ac71a6f5ed607236355aa2d04eb8a9bb878cf176a98c17", size = 272511, upload-time = "2026-03-23T07:40:42.832Z" },
 ]
 
 [package.optional-dependencies]
@@ -968,7 +976,7 @@ dev = [
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.122.0" },
     { name = "gunicorn", specifier = ">=23.0.0" },
-    { name = "memu-py", extras = ["postgres"], git = "https://github.com/parasite2060/memU.git" },
+    { name = "memu-py", extras = ["postgres"], specifier = ">=1.2.0" },
     { name = "psycopg", extras = ["binary", "pool"], specifier = ">=3.2.9" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
     { name = "python-dotenv", specifier = ">=1.0.0" },

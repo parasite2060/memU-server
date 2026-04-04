@@ -18,13 +18,11 @@ COPY . .
 # Sync the project
 RUN uv sync --frozen --no-dev
 
-# Install memu-py wheel if provided (CI builds pass the wheel, local builds skip)
-ARG MEMU_WHEEL=
-COPY ${MEMU_WHEEL:-.dockerignore} /tmp/memu-wheel*
-RUN if ls /tmp/memu-wheel*.whl 1>/dev/null 2>&1; then \
-      .venv/bin/pip install --force-reinstall --no-deps /tmp/memu-wheel*.whl && \
-      rm -f /tmp/memu-wheel*.whl; \
-    fi
+# Install memu-py wheel if present (CI places .whl files in memu-wheel/ directory)
+COPY memu-wheel/ /tmp/memu-wheel/
+RUN if ls /tmp/memu-wheel/*.whl 1>/dev/null 2>&1; then \
+      .venv/bin/pip install --force-reinstall --no-deps /tmp/memu-wheel/*.whl; \
+    fi && rm -rf /tmp/memu-wheel
 
 # Expose the port that FastAPI will run on
 EXPOSE 8000

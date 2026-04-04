@@ -29,18 +29,6 @@ jobs:
           path: memu-wheel/
           if_no_artifact_found: warn
 
-      - name: Locate wheel file
-        id: wheel
-        run: |
-          WHEEL=$(ls memu-wheel/*.whl 2>/dev/null | head -1 || true)
-          if [ -n "$WHEEL" ]; then
-            echo "path=$WHEEL" >> "$GITHUB_OUTPUT"
-            echo "Found wheel: $WHEEL"
-          else
-            echo "path=" >> "$GITHUB_OUTPUT"
-            echo "No wheel found — will use PyPI version"
-          fi
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -68,5 +56,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            MEMU_WHEEL=${{ steps.wheel.outputs.path }}

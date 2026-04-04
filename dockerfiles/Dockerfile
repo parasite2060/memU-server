@@ -18,13 +18,13 @@ COPY . .
 # Sync the project
 RUN uv sync --frozen --no-dev
 
-# Patch memu-py for Azure OpenAI compatibility (omit max_tokens=null)
-# Copies fixed files from patches/ over the installed PyPI versions
-COPY patches/azure-openai/ /tmp/memu-patches/
-RUN MEMU_PATH=$(.venv/bin/python -c "import memu; import os; print(os.path.dirname(memu.__file__))") && \
-    cp /tmp/memu-patches/openai_sdk.py "$MEMU_PATH/llm/openai_sdk.py" && \
-    cp /tmp/memu-patches/openai_backend.py "$MEMU_PATH/llm/backends/openai.py" && \
-    rm -rf /tmp/memu-patches
+# Install memu-py wheel if provided (CI builds pass the wheel, local builds skip)
+ARG MEMU_WHEEL=
+COPY ${MEMU_WHEEL:-.dockerignore} /tmp/memu-wheel*
+RUN if ls /tmp/memu-wheel*.whl 1>/dev/null 2>&1; then \
+      .venv/bin/pip install --force-reinstall --no-deps /tmp/memu-wheel*.whl && \
+      rm -f /tmp/memu-wheel*.whl; \
+    fi
 
 # Expose the port that FastAPI will run on
 EXPOSE 8000

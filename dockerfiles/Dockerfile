@@ -21,7 +21,7 @@ RUN uv sync --frozen --no-dev
 # Install memu-py wheel if present (CI places .whl files in memu-wheel/ directory)
 COPY memu-wheel/ /tmp/memu-wheel/
 RUN if ls /tmp/memu-wheel/*.whl 1>/dev/null 2>&1; then \
-      .venv/bin/pip install --force-reinstall --no-deps /tmp/memu-wheel/*.whl; \
+      uv pip install --python .venv/bin/python --force-reinstall --no-deps /tmp/memu-wheel/*.whl; \
     fi && rm -rf /tmp/memu-wheel
 
 # Expose the port that FastAPI will run on
